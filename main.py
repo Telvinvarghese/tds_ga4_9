@@ -1,12 +1,15 @@
 import re
 import pdfplumber
 import pandas as pd
-from fastapi import FastAPI, UploadFile, HTTPException
+from fastapi import FastAPI, UploadFile, Form, HTTPException
 
 app = FastAPI()
 
 @app.post("/process-pdf")
-async def GA4_9_with_pdfplumber(question: str, file: UploadFile):
+async def GA4_9_with_pdfplumber(
+    question: str = Form(...),  # ✅ Ensure question is received as form data
+    file: UploadFile = Form(...)
+):
     # ✅ Validate file type
     if file.content_type != "application/pdf":
         raise HTTPException(status_code=400, detail="Invalid file type. Only PDFs are allowed.")
