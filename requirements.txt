@@ -2,4 +2,4 @@ fastapi
 uvicorn
 pdfplumber
 pandas
-mangum
+python-multipart
