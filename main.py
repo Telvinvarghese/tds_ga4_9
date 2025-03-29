@@ -3,7 +3,6 @@ import io
 import pdfplumber
 import pandas as pd
 from fastapi import FastAPI, UploadFile
-from mangum import Mangum
 
 app = FastAPI()
 
@@ -48,5 +47,3 @@ async def GA4_9_with_pdfplumber(question: str, file: UploadFile):
     result = df[df[subject] >= min_score][final_subject].sum()
 
     return {"total_marks": result}
-
-handler = Mangum(app)  # Required for Vercel
